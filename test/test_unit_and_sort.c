@@ -89,6 +89,29 @@ void test_heap_sort(){
     
 }
 
+//斐波纳契堆排序测试
+void test_fbi_heap_sort(){
+
+
+    //int
+    union data *arr1 = get_random_array(10,200,8,INT);
+    fibonacciHeapSort(arr1,8,INT);
+    for (size_t i = 0; i < 8; i++)
+    {
+        /* code */
+        //printf("%d\n",arr1[i].i);
+    }
+
+    //float
+    union data *arr2 = get_random_array(10,20000,8,FLOAT);
+    fibonacciHeapSort(arr2,8,FLOAT);
+    for (size_t i = 0; i < 8; i++)
+    {
+        /* code */
+        //printf("%f\n",arr2[i].f);
+    }
+    
+}
 
 int main()
 {
@@ -97,5 +120,6 @@ int main()
     RUN_TEST(test_gen_arr);
     RUN_TEST(test_bubble_sort);
     RUN_TEST(test_heap_sort);
+    RUN_TEST(test_fbi_heap_sort);
     return UNITY_END();
 }

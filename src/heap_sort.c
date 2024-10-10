@@ -6,19 +6,18 @@ int heap_sort(union data *arr, int len, int type)
     // 数组转换为最大堆
     for (int i = len / 2 - 1; i >= 0; i--)
     {
-        //对每个节点进行最大堆化
+        // 对每个节点进行最大堆化
         heapify(arr, len, i, type);
     }
 
-    //从屁股上面开始拿元素 len--确保已经被换到最末尾的数不会被重新堆化
+    // 从屁股上面开始拿元素 len--确保已经被换到最末尾的数不会被重新堆化
     for (int i = len - 1; i >= 0; i--)
     {
-        //交换堆顶
-        swap(arr,i,0);
-        //继续对剩下的部分进行堆化，依旧指定0为根节点
-        heapify(arr,i,0,type);
+        // 交换堆顶
+        swap(arr, i, 0);
+        // 继续对剩下的部分进行堆化，依旧指定0为根节点
+        heapify(arr, i, 0, type);
     }
-    
 }
 
 void heapify(union data *arr, int len, int root, int type)
