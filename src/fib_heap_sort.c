@@ -252,6 +252,8 @@ void fibHeapConsolidate(FibHeap *heap, int type)
     }
         break;
     }
+    //a small bug i forgot
+    free(A);
 }
 
 // 斐波那契堆排序函数
