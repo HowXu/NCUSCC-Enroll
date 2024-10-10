@@ -1,25 +1,22 @@
 add_rules("mode.debug", "mode.release")
+-- OS相关
+if is_os("windows") then
+    set_toolchains("mingw")
+end
 
 target("NCUSCC-Enroll")
     set_kind("static")
     add_files("src/**.c")
     set_targetdir("./build/lib")
--- OS相关
-    if is_os("windows") then
-        set_toolchains("mingw")
-    end
 
 target("test")
     set_kind("binary")
     set_targetdir("./build/test")
     add_files("test/**.c","./Unity/src/*.c")
---    add_linkdirs("./build/lib")
+--  add_linkdirs("./build/lib")
     add_links("NCUSCC-Enroll")
     add_deps("NCUSCC-Enroll")
--- OS相关
-    if is_os("windows") then
-        set_toolchains("mingw")
-    end
+
     
 rule("test")
     after_build(function (target) 
