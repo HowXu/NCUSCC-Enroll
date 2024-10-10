@@ -14,8 +14,8 @@ union data *get_random_array(int min, int max, int size, int type)
 {
 
     srand((unsigned int)time(NULL)); // seed
-    //分配内存
-    union data *arr = (union data *) malloc(sizeof(union data [size])); //return
+    //动态分配内存
+    union data *arr = (union data *) malloc(size * sizeof(union data)); //return
 
     switch (type)
     {

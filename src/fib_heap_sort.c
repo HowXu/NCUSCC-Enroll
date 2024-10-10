@@ -132,7 +132,10 @@ FibHeapNode *fibHeapExtractMin(FibHeap *heap,int type)
 void fibHeapConsolidate(FibHeap *heap, int type)
 {
     int D = (int)(log(heap->n) / log(2)) + 1;
-    FibHeapNode *A[D];
+    //FibHeapNode *A[D];
+    // 动态分配 A 数组 Windows的Mingw不支持c99
+    FibHeapNode** A = (FibHeapNode**)malloc(D * sizeof(FibHeapNode*));
+    //FibHeapNode *A = (FibHeapNode *) malloc(sizeof(FibHeapNode *[D]));
 
     for (int i = 0; i < D; i++)
     {
