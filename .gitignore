@@ -8,3 +8,5 @@ build/
 # Unity Builds
 Unity/
 
+# fuck vscode config
+.vscode/

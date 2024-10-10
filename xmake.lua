@@ -4,24 +4,75 @@ if is_os("windows") then
     set_toolchains("mingw")
 end
 
+-- DEBUG相关
+if is_mode("debug") then 
+    add_cflags("-g","-pg","-O0")  -- 添加编译选项，生成性能分析信息
+    add_ldflags("-pg")  -- 添加链接选项，生成性能分析信息
+end
+
+-- 关闭优化
+set_optimize("none")
+
 target("NCUSCC-Enroll")
     set_kind("static")
     add_files("src/**.c")
     set_targetdir("./build/lib")
 
-target("test")
+target("test_runnable")
     set_kind("binary")
     set_targetdir("./build/test")
-    add_files("test/**.c","./Unity/src/*.c")
+    add_files("test/test_unit_and_sort.c","./Unity/src/*.c")
 --  add_linkdirs("./build/lib")
     add_links("NCUSCC-Enroll")
     add_deps("NCUSCC-Enroll")
 
-    
-rule("test")
-    after_build(function (target) 
-        os.exec("./build/test/test")
-    end)
+-- 多层优化等级编译
+target("test_optimization_o0")
+    set_kind("binary")
+    set_targetdir("./build/test/optimization")
+    add_files("test/test_optimization.c")
+--  add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+    add_cflags("-O0")
+
+target("test_optimization_o1")
+    set_kind("binary")
+    set_targetdir("./build/test/optimization")
+    add_files("test/test_optimization.c")
+--  add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+    add_cflags("-O1")
+
+target("test_optimization_o2")
+    set_kind("binary")
+    set_targetdir("./build/test/optimization")
+    add_files("test/test_optimization.c")
+--  add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+    add_cflags("-O2")
+
+target("test_optimization_o3")
+    set_kind("binary")
+    set_targetdir("./build/test/optimization")
+    add_files("test/test_optimization.c")
+--  add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+    add_cflags("-O3")
+
+target("test_optimization_ofast")
+    set_kind("binary")
+    set_targetdir("./build/test/optimization")
+    add_files("test/test_optimization.c")
+--  add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+    add_cflags("-Ofast")
+
+-- TODO:分析性能的脚本
 
 --    add_links("unity")
 --    add_linkdirs("./Unity/")
