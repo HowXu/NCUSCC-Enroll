@@ -1,0 +1,16 @@
+[
+{
+  "directory": "/home/howxu/Desktop/NCUSCC-Enroll",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/test/linux/x86_64/release/test/testUnity.c.o", "test/testUnity.c"],
+  "file": "test/testUnity.c"
+},
+{
+  "directory": "/home/howxu/Desktop/NCUSCC-Enroll",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/test/linux/x86_64/release/Unity/src/unity.c.o", "Unity/src/unity.c"],
+  "file": "Unity/src/unity.c"
+},
+{
+  "directory": "/home/howxu/Desktop/NCUSCC-Enroll",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-DNDEBUG", "-o", "build/.objs/NCUSCC-Enroll/linux/x86_64/release/src/main.c.o", "src/main.c"],
+  "file": "src/main.c"
+}]

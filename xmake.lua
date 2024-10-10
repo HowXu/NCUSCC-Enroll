@@ -1,8 +1,26 @@
 add_rules("mode.debug", "mode.release")
 
 target("NCUSCC-Enroll")
+    set_kind("static")
+    add_files("src/**.c")
+    set_targetdir("./build/lib")
+
+target("test")
     set_kind("binary")
-    add_files("src/*.c")
+    set_targetdir("./build/test")
+    add_files("test/**.c","./Unity/src/*.c")
+    add_linkdirs("./build/lib")
+    add_links("NCUSCC-Enroll")
+    add_deps("NCUSCC-Enroll")
+
+rule("test")
+    after_build(function (target) 
+        os.exec("./build/test/test")
+    end)
+
+--    add_links("unity")
+--    add_linkdirs("./Unity/")
+--    add_includedirs("./Unity/src/")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
