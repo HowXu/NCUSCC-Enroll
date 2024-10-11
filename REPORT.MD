@@ -116,7 +116,13 @@
 
 ![](./screenshots/REPORT/21.png)
 
-**为减少实验者心智负担,接下来的操作将在物理机Kali Linux 2024.3 amd64上进行.**
+(2)附加选项:安装Xmake
+
+因为本实验大量使用脚本进行测试，所以引入`xmake`这款构建工具来减少实验者心智负担.
+
+```bash
+curl -fsSL https://xmake.io/shget.text | bash
+```
 
 ## 算法的实现细节 测试数据生成方法 
 
@@ -248,6 +254,12 @@ target("test_optimization_o0")
 
 (2)编写Python脚本进行数据收集
 
+为了使用Python导出csv格式数据，需要先行安装pandas库:
+
+```bash
+pip install pandas
+```
+
 在(1)中已经使用xmake进行数据重定向输出,现编写`formate.py`脚本将`gprof`产生的分析文件格式化，提取其中的CPU运行占比,运行时间,运行次数等关键信息,同时删除如test函数,main函数的干扰.
 
 为确保数据的可靠性,对剔除数据后的数据需要对CPU运行占比进行重新计算.
@@ -258,7 +270,13 @@ target("test_optimization_o0")
 
 (3)实验数据处理与可视化
 
-再次编写Python脚本,将多次实验的数据进行统计,并将相关的函数调用情况合并,求平均值,最后使用`matplotlib`库绘制svg矢量图.如下:
+先行安装`matplotlib`库
+
+```bash
+pip install matplotlib
+```
+
+编写Python脚本,将多次实验的数据进行统计,并将相关的函数调用情况合并,求平均值,最后使用`matplotlib`库绘制svg矢量图.如下:
 
 ![](./screenshots/REPORT/23.svg)
 
@@ -334,7 +352,7 @@ xmake run test_analysis
 
 <font size=6 color=green>算法的时间复杂度分析</font>
 
-对于冒泡排序,其进行一次完整的数组遍历,在每次数组遍历中会进行`数组容量-当前遍历次数`的内循环,且存在大量的无效遍历和无效比较.当数组完全有序时,其复杂度为O(n),在完全逆序情况下,其复杂度为O(n(n-1)/2)即O(n^2),平均情况下可以忽略交换的次数,时间复杂度依旧为O(n^2).
+对于冒泡排序,其进行一次完整的数组遍历,在每次数组遍历中会进行`数组容量-当前遍历次数`的内循环,且存在大量的无效遍历和无效比较.当数组完全有序时,其复杂度为O(n),在完全逆序情况下,其复杂度为O(n(n-1)/2)即O(n^2),平均情况下可以忽略不交换的次数,时间复杂度依旧为O(n^2).
 
 在o3级别的横向对比中可以看到冒泡排序在自身运行时间上远远超过另外两个算法:
 
@@ -403,6 +421,7 @@ xmake run test_analysis
 
 在本项目过程中(就是开第一次线下会那天晚上),我将本项目移植到了Windows平台下,采用Mingw进行构建,结果是失败的.根据报错我发现一点好玩的:
 
+`src/fbi_heap_sort.c`(部分):
 ```c
     //new
     FibHeapNode** A = (FibHeapNode**)malloc(D * sizeof(FibHeapNode*));
