@@ -13,7 +13,7 @@ def plot_experiment_data(report_folder, svg_folder):
 
     # 遍历 report 文件夹，读取实验数据
     for filename in os.listdir(report_folder):
-        if any(key in filename for key in experiment_keys) and filename.endswith('-gen-ava.csv'):
+        if any(key in filename for key in experiment_keys) and filename.endswith('-gen-ave.csv'):
             file_path = os.path.join(report_folder, filename)
             df = pd.read_csv(file_path)
             data[filename] = df
@@ -60,7 +60,7 @@ def plot_experiment_data(report_folder, svg_folder):
             plt.close()
 
 def main():
-    report_folder = 'report/ava'  # 假设 CSV 文件保存在这个目录下
+    report_folder = 'report/average'  # 假设 CSV 文件保存在这个目录下
     svg_folder = 'report/all'       # 保存 SVG 文件的目录
     plot_experiment_data(report_folder, svg_folder)
 

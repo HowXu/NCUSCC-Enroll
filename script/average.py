@@ -48,17 +48,17 @@ def average_csv_files(report_folder, output_folder):
 
         # 创建新的 DataFrame
         average_df = pd.DataFrame(avg_data, columns=dfs[0].columns)
-        average_df['Function Name'] = average_df['Function Name'].str.replace('-gen', '-ava')  # 改名为 -ava
+        average_df['Function Name'] = average_df['Function Name'].str.replace('-gen', '-ave')  # 改名为 -ava
 
         # 生成输出文件路径
-        output_file = os.path.join(output_folder, f"{filename.replace('.csv', '-ava.csv')}")
+        output_file = os.path.join(output_folder, f"{filename.replace('.csv', '-ave.csv')}")
         
         # 保存到新文件
         average_df.to_csv(output_file, index=False, encoding='utf-8-sig')
 
 def main():
     report_folder = 'report'
-    output_folder = 'report/ava'
+    output_folder = 'report/average'
     
     average_csv_files(report_folder, output_folder)
 

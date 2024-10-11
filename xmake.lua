@@ -18,6 +18,8 @@ local OPM = "test/test_optimization.c"
 local OPM_TGT = "./build/test/optimization"
 local RM_ANA = "find ./analysis -type f -exec rm -f {} +"
 
+local TIMES = 3 -- 10次测试取平均值
+
 function get_dir(targetname)
     return string.format("%s/%s",OPM_TGT,targetname)
 end
@@ -101,25 +103,60 @@ target("test_optimization_ofast")
     end)
 
 -- TODO:分析性能的脚本
+-- TODO:添加处理逻辑自动进行10次性能测试然后生成svg图像
 target("test_analysis")
     set_kind("phony")
     add_deps("test_optimization_o0","test_optimization_o1","test_optimization_o2","test_optimization_o3","test_optimization_ofast")
     before_run(function (target) 
         -- clean
         os.run(RM_ANA)
+        print("[INFO] Clean analysis files")
     end)
-    on_run(function (target) 
+    on_run(function (target)  
+        -- 循环获得10次数据
+        for i = 1, TIMES do
+        --生成一次运行记录
         os.run("xmake run test_optimization_o0")
         os.run("xmake run test_optimization_o1")
         os.run("xmake run test_optimization_o2")
         os.run("xmake run test_optimization_o3")
         os.run("xmake run test_optimization_ofast")
+        --生成report
+        os.run("python3 ./script/formate.py")
+        -- clean
+        os.run(RM_ANA)
+        print(string.format("[INFO] Finish %d optimization test",i))
+        end
+        print(string.format("[INFO] %d test finish",TIMES))
+        -- 合并
+        os.run("python3 ./script/merge.py")
+        print("[INFO] Finish merge data")
+        -- 求平均值
+        os.run("python3 ./script/average.py")
+        print("[INFO] Finish average data")
+        -- 生成全比较图
+        os.run("python3 ./script/gen_all_svg.py")
+        print("[INFO] Finish generate all svgs")
+        -- 生成单个比较图
+        os.run("python3 ./script/gen_sin_svg.py")
+        print("[INFO] Finish generate single svgs")
     end)
     after_run(function (target) 
-        -- 调用python
+        -- clean
+        os.run(RM_ANA)
+        print("[INFO] All done")
     end)
 
--- TODO:添加处理逻辑自动进行10次性能测试然后生成svg图像
+-- 清除测试数据
+target("test_clean")
+    set_kind("phony")
+    on_run(function (target) 
+        -- clean analysis文件
+        os.run(RM_ANA)
+        -- clean report
+        os.run("rm -rf ./report")
+    end)
+
 
 --    add_links("unity")
 --    add_linkdirs("./Unity/")
