@@ -18,7 +18,7 @@ local OPM = "test/test_optimization.c"
 local OPM_TGT = "./build/test/optimization"
 local RM_ANA = "find ./analysis -type f -exec rm -f {} +"
 
-local TIMES = 3 -- 10次测试取平均值
+local TIMES = 10 -- 10次测试取平均值
 
 function get_dir(targetname)
     return string.format("%s/%s",OPM_TGT,targetname)

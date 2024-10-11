@@ -6,6 +6,8 @@
 #define INT 0
 #define FLOAT 1
 
+#define TIMES 10
+
 void setUp()
 {
 }
@@ -24,19 +26,30 @@ void test_gen_arr()
 {
 
     // int
-    union data *arr1 = get_random_array(10, 20, 8, INT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr1 = get_random_array(10, 20, TIMES, INT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%d\n",arr1[i].i);
+        printf("%d ",arr1[i].i);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
+        
     }
 
     // float
-    union data *arr2 = get_random_array(10, 20, 8, FLOAT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr2 = get_random_array(10, 20, TIMES, FLOAT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%f\n",arr2[i].f);
+        printf("%d ",arr2[i].f);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 }
 
@@ -45,21 +58,31 @@ void test_bubble_sort()
 {
 
     // int
-    union data *arr1 = get_random_array(10, 20, 8, INT);
-    bubble_sort(arr1, 8, INT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr1 = get_random_array(10, 20, TIMES, INT);
+    bubble_sort(arr1, TIMES, INT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%d\n",arr1[i].i);
+        printf("%d ",arr1[i].i);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 
     // float
-    union data *arr2 = get_random_array(10, 20, 8, FLOAT);
-    bubble_sort(arr2, 8, FLOAT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr2 = get_random_array(10, 20, TIMES, FLOAT);
+    bubble_sort(arr2, TIMES, FLOAT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%f\n",arr2[i].f);
+        printf("%d ",arr2[i].f);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 }
 
@@ -68,21 +91,31 @@ void test_heap_sort()
 {
 
     // int
-    union data *arr1 = get_random_array(10, 200, 8, INT);
-    heap_sort(arr1, 8, INT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr1 = get_random_array(10, 200, TIMES, INT);
+    heap_sort(arr1, TIMES, INT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%d\n",arr1[i].i);
+        printf("%d ",arr1[i].i);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 
     // float
-    union data *arr2 = get_random_array(10, 20000, 8, FLOAT);
-    heap_sort(arr2, 8, FLOAT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr2 = get_random_array(10, 20000, TIMES, FLOAT);
+    heap_sort(arr2, TIMES, FLOAT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%f\n",arr2[i].f);
+        printf("%d ",arr2[i].f);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 }
 
@@ -91,21 +124,31 @@ void test_fbi_heap_sort()
 {
 
     // int
-    union data *arr1 = get_random_array(10, 200, 8, INT);
-    fibonacciHeapSort(arr1, 8, INT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr1 = get_random_array(10, 200, TIMES, INT);
+    fibonacciHeapSort(arr1, TIMES, INT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%d\n",arr1[i].i);
+        printf("%d ",arr1[i].i);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 
     // float
-    union data *arr2 = get_random_array(10, 20000, 8, FLOAT);
-    fibonacciHeapSort(arr2, 8, FLOAT);
-    for (size_t i = 0; i < 8; i++)
+    union data *arr2 = get_random_array(10, 20000, TIMES, FLOAT);
+    fibonacciHeapSort(arr2, TIMES, FLOAT);
+    for (size_t i = 0; i < TIMES; i++)
     {
         /* code */
-        // printf("%f\n",arr2[i].f);
+        printf("%d ",arr2[i].f);
+        if (i == TIMES -1)
+        {
+            /* code */
+            printf("\n");
+        }
     }
 }
 

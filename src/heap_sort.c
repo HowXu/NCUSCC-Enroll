@@ -14,7 +14,7 @@ int heap_sort(union data *arr, int len, int type)
     for (int i = len - 1; i >= 0; i--)
     {
         // 交换堆顶
-        swap(arr, i, 0);
+        heap_swap(arr, i, 0);
         // 继续对剩下的部分进行堆化，依旧指定0为根节点
         heapify(arr, i, 0, type);
     }
@@ -45,7 +45,7 @@ void heapify(union data *arr, int len, int root, int type)
         // 如果最大元素不是根节点，将最大元素与根节点交换位置，并继续调整堆
         if (largest != root)
         {
-            swap(arr, largest, root);
+            heap_swap(arr, largest, root);
             heapify(arr, len, largest, type);
         }
         break;
@@ -66,7 +66,7 @@ void heapify(union data *arr, int len, int root, int type)
         // 如果最大元素不是根节点，将最大元素与根节点交换位置，并继续调整堆
         if (largest != root)
         {
-            swap(arr, largest, root);
+            heap_swap(arr, largest, root);
             heapify(arr, len, largest, type);
         }
         break;

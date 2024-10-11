@@ -16,7 +16,7 @@ int bubble_sort(union data *arr, int len, int type)
                 if (arr[j - 1].i > arr[j].i)
                 {
                     // 大小于就随便吧
-                    swap(arr, j - 1, j);
+                    bubble_swap(arr, j - 1, j);
                 }
             }
         }
@@ -31,7 +31,7 @@ int bubble_sort(union data *arr, int len, int type)
                 if (arr[j - 1].f > arr[j].f)
                 {
                     // 大小于就随便吧
-                    swap(arr, j - 1, j);
+                    bubble_swap(arr, j - 1, j);
                 }
             }
         }

@@ -5,7 +5,7 @@ def merge_functions_in_csv(file_path):
     df = pd.read_csv(file_path)
 
     # 合并 bubble_sort 和 swap
-    bubble_swap_df = df[df['Function Name'].isin(['bubble_sort', 'swap'])]
+    bubble_swap_df = df[df['Function Name'].isin(['bubble_sort', 'bubble_swap'])]
     if not bubble_swap_df.empty:
         bubble_swap_merged = bubble_swap_df.sum(numeric_only=True).to_frame().T
         bubble_swap_merged['Function Name'] = 'bubble_sort'  # 改名为 bubble_sort
@@ -14,7 +14,7 @@ def merge_functions_in_csv(file_path):
         bubble_swap_merged['Function Name'] = ['bubble_sort']
 
     # 合并 heapify 和 heap_sort
-    heap_df = df[df['Function Name'].isin(['heapify', 'heap_sort'])]
+    heap_df = df[df['Function Name'].isin(['heapify', 'heap_sort','heap_swap'])]
     if not heap_df.empty:
         heap_merged = heap_df.sum(numeric_only=True).to_frame().T
         heap_merged['Function Name'] = 'heap_sort'  # 改名为 heap_sort
@@ -24,7 +24,7 @@ def merge_functions_in_csv(file_path):
 
     # 合并其他函数，排除以 test 开头的函数
     others_df = df[~df['Function Name'].str.startswith('test') &
-                   ~df['Function Name'].isin(['bubble_sort', 'swap', 'heapify', 'heap_sort'])]
+                   ~df['Function Name'].isin(['bubble_sort', 'heap_swap', 'heapify', 'heap_sort','bubble_swap'])]
     if not others_df.empty:
         others_merged = others_df.sum(numeric_only=True).to_frame().T
         others_merged['Function Name'] = 'fib_heap_sort'  # 改名为 fib_heap_sort

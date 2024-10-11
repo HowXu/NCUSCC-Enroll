@@ -45,8 +45,10 @@ void fibHeapConsolidate(FibHeap* heap,int type);
 void fibonacciHeapSort(union data *arr, int n,int type);
 
 //到这里就没有了哈
-// 交换值
-void swap(union data *arr,int index_1,int index_2);
+// 交换值 为了测试更准一点这里有两个
+void bubble_swap(union data *arr,int index_1,int index_2);
+
+void heap_swap(union data *arr,int index_1,int index_2);
 
 // 创建最大堆
 void heapify(union data *arr,int len,int root,int type);

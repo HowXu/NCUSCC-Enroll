@@ -55,8 +55,10 @@ def plot_single_function_data(report_folder, single_folder):
             os.mkdir(func_folder)
 
         # 绘制每种数据类型的图表
+        index = 0
         for data_type in function_values.index:  # 遍历所有数据类型
-            if 's/call' in data_type:  # 跳过包含 's/call' 的数据类型
+            if 's/call' in data_type:
+                index += 1  # 跳过包含 's/call' 的数据类型
                 continue
 
             plt.figure(figsize=(12, 8))  # 增加图形高度
@@ -64,10 +66,13 @@ def plot_single_function_data(report_folder, single_folder):
             # 生成 x 轴标签和 y 值
             x_labels = list(function_data.keys())
             y_values = []
+            index += 1
             for exp in x_labels:
                 # 确保我们只获取有数据的实验
+
                 if function_data[exp].size > 0:
-                    y_values.append(function_data[exp][0])  # 获取第一个值
+                    # 死全家Ai还得你爸自己来 我操你吗连个index都处理不好
+                    y_values.append(function_data[exp][index])  # 获取第一个值
                 else:
                     y_values.append(0)  # 如果没有数据，填充为0
 

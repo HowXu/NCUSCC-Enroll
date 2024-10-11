@@ -69,3 +69,9 @@ xmake run test_analysis
 ![OK](./screenshots/README/2.png)
 
 之后在`./report/all`和`./report/single`文件夹可以找到生成的矢量图,在`./report/average`文件夹下有取平均之后的测试数据
+
+下一次算法测试前需要清理上一次的结果:
+
+```bash
+xmake run test_clean
+```
