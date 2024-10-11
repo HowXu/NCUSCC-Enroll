@@ -6,7 +6,7 @@
 #define FLOAT 1
 
 #define SEED 114514
-#define SIZE 50000
+#define SIZE 100000
 //为了测试精准度 使用统一的种子生成随机数 但是在函数调用中来这一出还是感觉不太严谨
 
 void test_bubble_sort(){
