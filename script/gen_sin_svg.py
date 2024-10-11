@@ -71,7 +71,7 @@ def plot_single_function_data(report_folder, single_folder):
                 # 确保我们只获取有数据的实验
 
                 if function_data[exp].size > 0:
-                    # 死全家Ai还得你爸自己来 我操你吗连个index都处理不好
+                    # index处理一下哈
                     y_values.append(function_data[exp][index])  # 获取第一个值
                 else:
                     y_values.append(0)  # 如果没有数据，填充为0

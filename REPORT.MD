@@ -120,19 +120,19 @@ xmake create -l c NCUSCC-Enroll
 
 算法实现细节如下:
 
-<font size=6>冒泡排序:</font>
+<font size=6 color=red>冒泡排序:</font>
 
 冒泡排序的核心在于每次循环都可以通过多次对相邻两组数据的进行大小比较,以确保每次外循环结束时都有至少一个最大(最小)元素到达端点,因此只需要两个嵌套的循环就可以实现.
 
 参考`src/bubble_sort.c`
 
-<font size=6>简单堆排序:</font>
+<font size=6 color=red>简单堆排序:</font>
 
 简单堆排序使用二叉堆这种数据结构进行比较排序,需要指出的是对于本实验中参与排序的数组仅仅是无序数组,需要先将其转换为最大(最小)堆,之后不断取出堆顶元素放在堆尾,再通过调整剩下元素为一个新的堆,重复上述过程最后得到的数组就会按照大(小)顺序排列.  
 
 参考`src/heap_sort.c`
 
-<font size=6>斐波纳契堆排序:</font>
+<font size=6 color=red>斐波纳契堆排序:</font>
 
 斐波纳契堆是一种用于实现优先队列的数据结构,此处的斐波纳契堆排序实际上是以数组元素构建斐波纳契堆这种数据结构,然后通过操作生成的斐波纳契堆进行排序.
 
@@ -196,7 +196,7 @@ xmake run test_runnable
 
 (1)增加编译选项
 
-修改`xmake.lua`脚本,新增如下选项，保证编译产物可以输出桩信息:
+修改`xmake.lua`脚本,新增编译时选项和链接时选项，保证编译产物可以输出桩信息:
 
 ```lua
 if is_mode("debug") then 
@@ -314,14 +314,91 @@ xmake run test_analysis
 
 (5)测试结果分析
 
-<font size=6>算法的时间复杂度分析</font>
+<font size=6 color=green>算法的时间复杂度分析</font>
 
 对于冒泡排序,其进行一次完整的数组遍历,在每次数组遍历中会进行`数组容量-当前遍历次数`的内循环,且存在大量的无效遍历和无效比较.当数组完全有序时,其复杂度为O(n),在完全逆序情况下,其复杂度为O(n(n-1)/2)即O(n^2),平均情况下可以忽略交换的次数,时间复杂度依旧为O(n^2).
 
+在o3级别的横向对比中可以看到冒泡排序在自身运行时间上远远超过另外两个算法:
+
+![](report/all/test_optimization_o3-gen-ave/test_optimization_o3-gen-ave.csv_Self_Seconds_data.svg)
+
+
 对于简单堆排序,首先进行堆化操作,需要对n/2个节点进行该操作,这一部分时间复杂度为O(n);再进行反复提取和调整剩下元素的操作,提取元素并进行新的堆化的操作复杂度为O(logn),因为提取n个元素所以总的复杂度为O(nlogn)，总体来看,其在任何情况下都可以达到O(nlogn)的复杂度,是一种稳定的算法.
 
-对于斐波纳契堆排序,其存在多个产生时间复杂度的环节,简单来说,插入、寻找最小元素、减小关键字、合并操作、删除操作复杂度都低至O(1)，删除最小元素的复杂度不确定但是摊还之后是O(logn)，考虑对n个元素进行排序，总的时间复杂度来到O(nlogn),其排序速度并不非常突出.
+从多个优化级别的对比上也可以看出其稳定性:
 
-<font size=6>算法的处理速度对比</font>
+![](./report/single/heap_sort/heap_sort_Self_Seconds_data.svg)
 
-<font size=6>不同优化等级对算法性能的影响</font>
+同时也可以从O3级别算法的对比上看到其极高的性能:
+
+![](./report/all/test_optimization_o3-gen-ave/test_optimization_o3-gen-ave.csv_Self_Seconds_data.svg)
+
+对于斐波纳契堆排序,其存在多个产生时间复杂度的环节,简单来说,插入、寻找最小元素、减小关键字、合并操作、删除操作复杂度都低至O(1)，删除最小元素的复杂度不确定但是摊还之后是O(logn)，考虑对n个元素进行排序，总的时间复杂度来到O(nlogn),其排序速度并不非常突出,并且具有不稳定性.
+
+参看O2级别的算法对比:
+
+![](./report/all/test_optimization_o2-gen-ave/test_optimization_o2-gen-ave.csv_Self_Seconds_data.svg)
+
+<font size=6 color=green>同一优化下不同算法对比</font>
+
+统一在O2的优化级别下进行对比.
+
+时间切片占用,即资源占用量:
+
+![](./report/all/test_optimization_o2-gen-ave/test_optimization_o2-gen-ave.csv_New_Percentage.svg)
+
+可以很直观地看到`bubble_sort`相比之下会消耗更多的CPU资源,这与其调用了过量的swap函数不无关系.相比之下,`heap_sort`消耗量小了一个数量级,这得益于其对树的操作执行数远远小于`bubble_sort`.
+
+运行时间对比,即算法速度(性能):
+
+![](./report/all/test_optimization_o2-gen-ave/test_optimization_o2-gen-ave.csv_Self_Seconds_data.svg)
+
+可以看到在该优化条件下其算法性能的差距来到指数级,`heap_sort`再处理极大量的数据下表现出优越的性能.而斐波纳契堆排序依旧处在二者之间.
+
+更多不同优化等级的对比请自行查阅.
+
+<font size=6 color=green>不同优化等级对同一算法性能的影响</font>
+
+因为`bubble_sort`和`heap_sort`的差距过大,且斐波纳契堆排序代码量更大(更能看出优化过程),因此这里先对比斐波纳契堆排列.
+
+首先来看CPU时间占用:
+
+![](report/single/fib_heap_sort/fib_heap_sort_New_Percentage.svg)
+
+可以看到随着优化等级提高,资源占用也出现递减的趋势,o2与o3级别优化已经近似,ofast优化则对标了o1.从运行时间对比上看ofast优化提高量极小,可能与本次实验中三种排序算法的数学逻辑有关.
+
+再来看运行时间对比:
+
+![](./report/single/fib_heap_sort/fib_heap_sort_Self_Seconds_data.svg)
+
+不同的优化选项对该算法的优化差异微乎其微.
+
+同时对比另外两个算法的优化差异,可以看到在极大量的数据下,不同的优化选项更多体现在不同算法对资源的占用上,而处理速度则近似相同.
+
+### 7.实验报告
+
+<font size=5>一些小问题</font>
+
+一、关于跨平台的事情:  
+
+在本项目过程中(就是开第一次线下会那天晚上),我将本项目移植到了Windows平台下,采用Mingw进行构建,结果是失败的.根据报错我发现一点好玩的:
+
+```c
+    //new
+    FibHeapNode** A = (FibHeapNode**)malloc(D * sizeof(FibHeapNode*));
+
+    //before
+    xxxxx D = xxxxx;
+    FibHeapNode *A = (FibHeapNode *) malloc(sizeof(FibHeapNode *[D]));
+```
+
+这一行是用来创建斐波纳契堆节点的,后者不能在Windows下通过编译 o.O?
+
+后来查了一下编译报错(C20多少),大概是Windows平台上的Mingw不支持C99标准的以变量值创建数组,只能使用上面的动态分配形式.
+
+二、关于Python脚本的事情
+
+必须澄清我本人极度不喜欢python的缩进式语法所以对python的了解度很低,这个项目的python脚本绝大部分是AI写的.在这些脚本中存在一个很严重的文件命名问题,即对于文件名空格,数据词条空格(如Self s/call)这种形式.而且产生的文件名会很长以至于MD文档不能读。
+
+应该在脚本中外加一个修改输出文件命名的部分,不过在这里不加也可以.
+
