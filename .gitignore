@@ -16,3 +16,5 @@ report/*
 # 保留 svg 文件夹 or readme没有东西
 !report/single/
 !report/all/
+
+analysis/
