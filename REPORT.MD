@@ -1,5 +1,7 @@
 # NCUSCC 2024秋超算考核试题 C语言试题报告
 
+<font size=5>Author: HowXu</font>  
+
 # 试题要求
 
 1. 安装虚拟机：
@@ -50,21 +52,27 @@
 
 ![](./screenshots/REPORT/3.png)
 
-![](./screenshots/REPORT/4.png)
+<div style="width: 100%; margin: 0 auto;">
+  <img src="./screenshots/REPORT/4.png" alt="示例图片" style="width: 80%; height: 80%;">
+</div>
 
-在操作系统选择中选择Ubuntu 64位
+在操作系统选择中选择Ubuntu 64位  
 
 ![](./screenshots/REPORT/5.png)
 
 ![](./screenshots/REPORT/6.png)
 
-![](./screenshots/REPORT/7.png)
-![](./screenshots/REPORT/8.png)
-![](./screenshots/REPORT/9.png)
+<div style="width: 100%; margin: 0 auto;">
+  <img src="./screenshots/REPORT/7.png" alt="示例图片" style="width: 80%; height: 80%;">
+</div>
+
+![](./screenshots/REPORT/8_1.png)
+
+![](./screenshots/REPORT/9_1.png)
 
 选中Ubuntu 22.04 LTS iso文件  
 
-![](./screenshots/REPORT/10.png)
+![](./screenshots/REPORT/10_1.png)
 
 (4)启动虚拟机,选择Try Or Install Ubuntu选项,进行安装:    
 
@@ -78,9 +86,15 @@
 
 安装完成后在虚拟机设置中关闭iso文件自动连接:  
 
-![](./screenshots/REPORT/14.png)
-![](./screenshots/REPORT/15.png)
-![](./screenshots/REPORT/16.png)
+<div style="width: 100%; margin: 0 auto;">
+  <img src="./screenshots/REPORT/14.png" alt="示例图片" style="width: 80%; height: 80%;">
+</div>
+
+<div style="width: 100%; margin: 0 auto;">
+  <img src="./screenshots/REPORT/15.png" alt="示例图片" style="width: 80%; height: 80%;">
+</div>
+
+![](./screenshots/REPORT/16_1.png)
 
 再次开机,进入Ubuntu桌面:  
 
@@ -409,3 +423,6 @@ xmake run test_analysis
 应该在脚本中外加一个修改输出文件命名的部分,不过在这里不加也可以.
 
 ## The End
+<font size=6>Author: HowXu</font>  
+<font size=4>mail: howxu366@outlook.com</font>  
+<font size=4>site: howxu.icu</font>  
