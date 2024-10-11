@@ -119,6 +119,8 @@ target("test_analysis")
         -- 调用python
     end)
 
+-- TODO:添加处理逻辑自动进行10次性能测试然后生成svg图像
+
 --    add_links("unity")
 --    add_linkdirs("./Unity/")
 --    add_includedirs("./Unity/src/")
