@@ -36,7 +36,7 @@
 
 # 实验报告
 
-## 实验环境搭建
+## 一、实验环境搭建
 
 ### 1.VMWare虚拟安装Ubuntu 22.04 LTS操作系统  
 
@@ -48,13 +48,13 @@
 
 ![](./screenshots/REPORT/2.png)
 
+<br><br><br>
+
 (3) 按照如下设置配置虚拟机信息,因为参与大量数据计算,需要修改CPU数量、核心、运行内存:  
 
 ![](./screenshots/REPORT/3.png)
 
-<div style="width: 100%; margin: 0 auto;">
-  <img src="./screenshots/REPORT/4.png" alt="示例图片" style="width: 80%; height: 80%;">
-</div>
+![](./screenshots/REPORT/4.png)
 
 在操作系统选择中选择Ubuntu 64位  
 
@@ -62,21 +62,18 @@
 
 ![](./screenshots/REPORT/6.png)
 
-<div style="width: 100%; margin: 0 auto;">
-  <img src="./screenshots/REPORT/7.png" alt="示例图片" style="width: 80%; height: 80%;">
-</div>
+![](./screenshots/REPORT/7.png)
 
 ![](./screenshots/REPORT/8_1.png)
 
 ![](./screenshots/REPORT/9_1.png)
 
+
 选中Ubuntu 22.04 LTS iso文件  
 
 ![](./screenshots/REPORT/10_1.png)
 
-(4)启动虚拟机,选择Try Or Install Ubuntu选项,进行安装:    
-
-![](./screenshots/REPORT/11.png)
+(4)启动虚拟机,选择`Try Or Install Ubuntu`选项,进行安装  
 
 ![](./screenshots/REPORT/12.png)
 
@@ -86,19 +83,13 @@
 
 安装完成后在虚拟机设置中关闭iso文件自动连接:  
 
-<div style="width: 100%; margin: 0 auto;">
-  <img src="./screenshots/REPORT/14.png" alt="示例图片" style="width: 80%; height: 80%;">
-</div>
+![](./screenshots/REPORT/14.png)
 
-<div style="width: 100%; margin: 0 auto;">
-  <img src="./screenshots/REPORT/15.png" alt="示例图片" style="width: 80%; height: 80%;">
-</div>
+![](./screenshots/REPORT/15.png)
 
 ![](./screenshots/REPORT/16_1.png)
 
-再次开机,进入Ubuntu桌面:  
-
-![](./screenshots/REPORT/17.png)
+再次开机,进入Ubuntu桌面.
 
 (5)运行`sudo apt update`更新源,顺带检测网络连接情况,在本实验中使用VMWare的默认虚拟机设置,无需修改即可访问物理机网络:  
 
@@ -124,14 +115,14 @@
 curl -fsSL https://xmake.io/shget.text | bash
 ```
 
-## 算法的实现细节 测试数据生成方法 
+## 二、算法的实现细节 测试数据生成方法 
 
 ### 3.4.实现算法,算法测试和大量数据测试
 
 (1)算法实现
 
 使用xmake构建工具生成一个空的C语言项目:
-
+im
 ```bash
 xmake create -l c NCUSCC-Enroll
 ```
@@ -186,9 +177,9 @@ xmake create -l c NCUSCC-Enroll
         TEST_ASSERT_EQUAL_INT(arr2[i].i, arr3[i].i);
         TEST_ASSERT_EQUAL_INT(arr3[i].i, arr1[i].i);
 
-        TEST_ASSERT_EQUAL_FLOAT(arr4[i].i, arr5[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr5[i].i, arr6[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr6[i].i, arr4[i].i);
+        TEST_ASSERT_EQUAL_FLOAT(arr4[i].f, arr5[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr5[i].f, arr6[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr6[i].f, arr4[i].f);
     }
 ```
 

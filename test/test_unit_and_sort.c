@@ -182,9 +182,9 @@ void test_10000_data()
         TEST_ASSERT_EQUAL_INT(arr2[i].i, arr3[i].i);
         TEST_ASSERT_EQUAL_INT(arr3[i].i, arr1[i].i);
 
-        TEST_ASSERT_EQUAL_FLOAT(arr4[i].i, arr5[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr5[i].i, arr6[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr6[i].i, arr4[i].i);
+        TEST_ASSERT_EQUAL_FLOAT(arr4[i].f, arr5[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr5[i].f, arr6[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr6[i].f, arr4[i].f);
     }
     
 }
@@ -219,9 +219,9 @@ void test_100000_data()
         TEST_ASSERT_EQUAL_INT(arr2[i].i, arr3[i].i);
         TEST_ASSERT_EQUAL_INT(arr3[i].i, arr1[i].i);
 
-        TEST_ASSERT_EQUAL_FLOAT(arr4[i].i, arr5[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr5[i].i, arr6[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr6[i].i, arr4[i].i);
+        TEST_ASSERT_EQUAL_FLOAT(arr4[i].f, arr5[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr5[i].f, arr6[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr6[i].f, arr4[i].f);
     }
     
 }
@@ -256,9 +256,9 @@ void test_200000_data()
         TEST_ASSERT_EQUAL_INT(arr2[i].i, arr3[i].i);
         TEST_ASSERT_EQUAL_INT(arr3[i].i, arr1[i].i);
 
-        TEST_ASSERT_EQUAL_FLOAT(arr4[i].i, arr5[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr5[i].i, arr6[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr6[i].i, arr4[i].i);
+        TEST_ASSERT_EQUAL_FLOAT(arr4[i].f, arr5[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr5[i].f, arr6[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr6[i].f, arr4[i].f);
     }
     
 }
@@ -293,9 +293,9 @@ void test_300000_data()
         TEST_ASSERT_EQUAL_INT(arr2[i].i, arr3[i].i);
         TEST_ASSERT_EQUAL_INT(arr3[i].i, arr1[i].i);
 
-        TEST_ASSERT_EQUAL_FLOAT(arr4[i].i, arr5[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr5[i].i, arr6[i].i);
-        TEST_ASSERT_EQUAL_FLOAT(arr6[i].i, arr4[i].i);
+        TEST_ASSERT_EQUAL_FLOAT(arr4[i].f, arr5[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr5[i].f, arr6[i].f);
+        TEST_ASSERT_EQUAL_FLOAT(arr6[i].f, arr4[i].f);
     }
     
 }
