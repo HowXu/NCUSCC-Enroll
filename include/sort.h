@@ -4,8 +4,7 @@ int bubble_sort(union data *arr,int len,int type);
 //基础堆排序
 int heap_sort(union data *arr,int len,int type);
 //斐波那契堆排序
-// 以下内容基本全部使用chatgpt生成 T_T
-
+// 特别鸣谢: ChatGPT
 // 斐波那契堆的节点
 typedef struct FibHeapNode {
     union data key;
