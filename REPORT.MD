@@ -122,7 +122,7 @@ curl -fsSL https://xmake.io/shget.text | bash
 (1)算法实现
 
 使用xmake构建工具生成一个空的C语言项目:
-im
+
 ```bash
 xmake create -l c NCUSCC-Enroll
 ```
