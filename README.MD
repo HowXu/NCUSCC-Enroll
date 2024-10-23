@@ -43,7 +43,7 @@ pip install matplotlib pandas
 > [!NOTE]\
 > 如果你也使用Kali，则应该使用下面的命令
 ```bash
-pip install matplotlib pandas --break-system-packages
+pip install matplotlib pandas --user
 ```
 
 ### 构建算法测试:
